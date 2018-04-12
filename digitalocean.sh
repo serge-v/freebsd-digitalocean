@@ -148,7 +148,7 @@ if [ ! -z $droplet_user ] ; then
 		me=`basename $0`
 		do_keys_tmp=`mktemp -t $me` || exit 1
 		$api_item/public-keys > $do_keys_tmp || (rm $do_keys_tmp && exit 1)
-		auth_keys="${ssh_dir}/.authorized_keys"
+		auth_keys="${ssh_dir}/authorized_keys"
 		echo "" >> $do_keys_tmp
 		cat $auth_keys >> $do_keys_tmp 2>/dev/null
 		sort -u $do_keys_tmp > $auth_keys
@@ -156,4 +156,3 @@ if [ ! -z $droplet_user ] ; then
 		chown $droplet_user $auth_keys && chmod 600 $auth_keys
 	fi
 fi
-
